@@ -19,6 +19,7 @@ func New(svc *service.Service) *Server {
 
 	return &Server{
 		&http.Server{
+			Handler:      router,
 			Addr:         svc.Config().ListenAddr,
 			WriteTimeout: 15 * time.Second,
 			ReadTimeout:  15 * time.Second,
@@ -27,7 +28,7 @@ func New(svc *service.Service) *Server {
 }
 
 func (srv *Server) Run() error {
-	log.Info("server started")
+	log.Info("server started!!!!")
 	return srv.ListenAndServe()
 	//httpServerErrCh := make(chan error, 1)
 	//go func() {

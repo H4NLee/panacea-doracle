@@ -10,7 +10,6 @@ import (
 	"syscall"
 	"time"
 
-	oracleevent "github.com/medibloc/panacea-doracle/event/oracle"
 	"github.com/medibloc/panacea-doracle/server"
 	"github.com/medibloc/panacea-doracle/service"
 	log "github.com/sirupsen/logrus"
@@ -33,13 +32,13 @@ func startCmd() *cobra.Command {
 			}
 			defer svc.Close()
 
-			err = svc.StartSubscriptions(
-				oracleevent.NewRegisterOracleEvent(svc),
-				oracleevent.NewUpgradeOracleEvent(svc),
-			)
-			if err != nil {
-				return fmt.Errorf("failed to start event subscription: %w", err)
-			}
+			//err = svc.StartSubscriptions(
+			//	oracleevent.NewRegisterOracleEvent(svc),
+			//	oracleevent.NewUpgradeOracleEvent(svc),
+			//)
+			//if err != nil {
+			//	return fmt.Errorf("failed to start event subscription: %w", err)
+			//}
 
 			httpServerErrCh := make(chan error, 1)
 			srv := server.New(svc)
